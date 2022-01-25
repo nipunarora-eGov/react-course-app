@@ -1,7 +1,8 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css'
-const NewExpense = ({onAddExpense}) => {
+import AddNewExpense from './AddNewExpense';
+const NewExpense = ({formState,onAddExpense,handleFormStateChangeApp,handleFormStateChangeAppjs}) => {
     const onSubmitHandler = (expenseData) => {
         const data = {
             ...expenseData,
@@ -9,9 +10,12 @@ const NewExpense = ({onAddExpense}) => {
         }
         onAddExpense(data);
     }
+    const handleFormStateChange = () => {
+      handleFormStateChangeApp();
+    }
   return (
     <div className='new-expense'>
-        <ExpenseForm onSubmitExpenseData = {onSubmitHandler}/>
+      {formState ? <ExpenseForm handleFormStateChange= {handleFormStateChange} onSubmitExpenseData = {onSubmitHandler}/> : <AddNewExpense handleFormStateChange = {handleFormStateChange} />}
     </div>
   );
 };

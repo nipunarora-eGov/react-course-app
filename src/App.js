@@ -25,15 +25,21 @@ const dummyExpenses = [
   ];
 
 function App() {
+  const [formState,setFormState] = useState(false);
   const [expenses,setExpenses]=useState(dummyExpenses);
   const addExpenseHandler = (expense) => {
     setExpenses(prevExpenses => {
       return [expense,...prevExpenses]
     })
   }
+  const handleFormStateChangeApp = () => {
+    setFormState((prevState) => {
+      return !prevState;
+    })
+  }
   return (
     <div>
-      <NewExpense onAddExpense= {addExpenseHandler}/>
+      <NewExpense handleFormStateChangeAppjs = {handleFormStateChangeApp} handleFormStateChangeApp = {handleFormStateChangeApp} formState={formState} onAddExpense= {addExpenseHandler}/>
       <Expenses items={expenses}/>
     </div>
   );
